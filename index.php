@@ -1,26 +1,27 @@
-<html>
-<head>
-    <title>Test</title>
-    <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-<div id="top_bar_black"> <p id="text">NEWS</p></div>
+<?php include('views/header.php') ?>
+<?php include('admin/bdconnect.php') ?>
 
 <div id="news">
     <?php
-    $news = file_get_contents("bd/news.txt");
-    $news = explode("\n", $news);
-    for ($i = 0; $i < count($news); $i++) {
-        $new = explode(";", $news[$i]);
-        ?>
-        <h1><?=$new[0]?></h1>
-        <p><?=$new[1]?></p>
-        <p><?=$new[2]?></p>
-    <?php } ?>
+    //ЗАГОЛОВКИ
+    if(!isset($_GET['id']))
+    {
+    $result = mysql_query("SELECT news_id, ntitle FROM news");
+    $myrow = mysql_fetch_array($result);
+    do
+    {
+        echo "<a href='index.php?id=".$myrow[news_id]."'>".$myrow[ntitle]."</a><br>";
+    }
+    while ($myrow = mysql_fetch_array($result));
+    }
+    //ТЕКСТ
+    if(isset($_GET['id']))
+    {
+        $result=mysql_query("SELECT ntext, ndate, ntitle FROM news WHERE news_id='$_GET[id]'");
+        $myrow=mysql_fetch_array($result);
+        echo "<p id='title'>$myrow[ntitle] <br> </p>";
+        echo "<p>$myrow[ntext] <br><br>$myrow[ndate] </p>";
+    }
+    ?>
 </div>
-<div id="bottom_bar_black"></div>
-<div id="copywriteblock"> Designed by <a>isteelfelix</a></div>
-
-</body>
-</html>
+<?php include('views/footer.php') ?>

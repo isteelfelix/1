@@ -6,12 +6,17 @@ body {
     background-attachment: scroll;
 }
 
+#title {
+    color: darkkhaki;
+    text-align: left;
+}
+
 #news {
-    margin-left: 5%;
-    margin-right: 5%;
-    width:80%;
+    width:60%;
     height:80%;
-    background-attachment: scroll;
+    text-align: left;
+    margin:15px;
+    padding:15px;
 }
 
 #top_bar_black {
@@ -21,10 +26,12 @@ body {
 }
 
 #text {
-    margin-left: 5%;
+
     color: aliceblue;
     font-size: x-large;
 }
+
+
 
 #bottom_bar_black {
     width:100%;
